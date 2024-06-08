@@ -1,21 +1,30 @@
 ---
-import { db, Customers } from "astro:db";
+import { db, Customers, Items } from "astro:db";
 import Layout from "../layouts/Layout.astro";
 import Customer from "../components/forms/Customer";
+import Item from "../components/forms/Item";
 
 const customers = await db.select().from(Customers);
+const items = await db.select().from(Items);
 ---
 
 <Layout title="Welcome to Astro.">
   <main class="grid grid-cols-2">
-    <div id="customerFormContainer">
-      <Customer client:only="react" />
-      <div class="mt-6 text-center font-semibold">
-        <p>Total Customers: {customers.length}</p>
+    <div class="flex flex-col gap-3">
+      <div class="p-5">
+        <Customer client:only="react" />
+        <p class="text-center font-semibold">
+          Total Customers: {customers.length}
+        </p>
+      </div>
+      <div class="divider divider-primary"></div>
+      <div class="p-5">
+        <Item client:only="react" />
+        <p class="text-center font-semibold">Total Items: {items.length}</p>
       </div>
     </div>
 
-    <div>
+    <div class="p-5">
       {
         customers.map((customer) => (
           <div>
@@ -27,6 +36,22 @@ const customers = await db.select().from(Customers);
                 <p>{customer.email}</p>
                 <p>{customer.phone}</p>
                 <p>{customer.createdAt}</p>
+              </li>
+            </ul>
+          </div>
+        ))
+      }
+      <div class="divider divider-neutral"></div>
+      {
+        items.map((item) => (
+          <div>
+            <ul>
+              <li class="mb-6">
+                <h1 class="font-bold">{item.name}</h1>
+                <p>{item.id}</p>
+                <p>{item.desc}</p>
+                <p>${item.price.toFixed(2)}</p>
+                <p>{item.sku}</p>
               </li>
             </ul>
           </div>
