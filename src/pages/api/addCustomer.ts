@@ -1,15 +1,13 @@
 import type { APIRoute } from "astro";
 import { db, Customers } from "astro:db";
-import { generateId, getFullAddress } from "../../utils/helper";
+import { generateId, trimFormData, getFullAddress } from "../../utils/helper";
 
 export const POST: APIRoute = async ({ request }) => {
   const data = await request.formData();
+  const fields = ["name", "address", "unit", "email", "phone"];
+  const trimmedData = trimFormData(data, fields);
+  const { name, address, unit, email, phone } = trimmedData;
   const id = generateId(32) as string;
-  const name = (data.get("name") as string).trim();
-  const address = (data.get("address") as string).trim();
-  const unit = (data.get("unit") as string).trim();
-  const email = (data.get("email") as string).trim();
-  const phone = (data.get("phone") as string).trim();
 
   if (!name || !address || !email || !phone) {
     return new Response(
