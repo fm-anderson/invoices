@@ -10,3 +10,7 @@ export function generateId(length: number) {
   }
   return result;
 }
+
+export const getFullAddress = (address: string, unit: string) => {
+  return `${address.trim()} ${unit ? unit.trim() : ""}`.trim();
+};

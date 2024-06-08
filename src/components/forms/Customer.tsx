@@ -6,6 +6,7 @@ import FormField from "./FormField";
 interface CustomerFormData {
   name: string;
   address: string;
+  unit: string;
   email: string;
   phone: string;
 }
@@ -15,6 +16,7 @@ export default function Customer(): ReactElement {
     defaultValues: {
       name: "",
       address: "",
+      unit: "",
       email: "",
       phone: "",
     },
@@ -58,6 +60,13 @@ export default function Customer(): ReactElement {
           schema={customerSchema.address}
           label="Address"
           placeholder="99 Main St, San Francisco, CA 94016"
+        />
+        <FormField
+          form={form}
+          name="unit"
+          schema={customerSchema.unit}
+          label="Apt/Unit"
+          placeholder="(Apt 2) or (Unit 2)"
         />
         <FormField
           form={form}

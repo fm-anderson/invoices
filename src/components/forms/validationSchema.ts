@@ -16,8 +16,17 @@ const addressSchema = z
   .trim()
   .regex(
     /^(\d+) ([A-Za-z0-9\s]+), ([A-Za-z\s]+), ([A-Z]{2}) (\d{5})$/,
-    "Address must be in the format: 'Number Street, City, State Abbreviation Zipcode'",
+    "Address must be in the format: '## Main St, City, MA #####'",
   );
+
+const unitSchema = z
+  .string()
+  .trim()
+  .regex(
+    /^\((?:Apt|Unit) \d+\)$/,
+    "Unit must be in the format: '(Apt #)' or '(Unit #)'",
+  )
+  .or(z.literal(""));
 
 const phoneSchema = z
   .string()
@@ -32,6 +41,7 @@ const phoneSchema = z
 export const customerSchema = {
   name: nameSchema,
   address: addressSchema,
+  unit: unitSchema,
   email: emailSchema,
   phone: phoneSchema,
 };

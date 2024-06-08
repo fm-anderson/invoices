@@ -1,14 +1,15 @@
 import type { APIRoute } from "astro";
 import { db, Customers } from "astro:db";
-import { generateId } from "../../utils/helper";
+import { generateId, getFullAddress } from "../../utils/helper";
 
 export const POST: APIRoute = async ({ request }) => {
   const data = await request.formData();
   const id = generateId(32) as string;
-  const name = data.get("name") as string;
-  const address = data.get("address") as string;
-  const email = data.get("email") as string;
-  const phone = data.get("phone") as string;
+  const name = (data.get("name") as string).trim();
+  const address = (data.get("address") as string).trim();
+  const unit = (data.get("unit") as string).trim();
+  const email = (data.get("email") as string).trim();
+  const phone = (data.get("phone") as string).trim();
 
   if (!name || !address || !email || !phone) {
     return new Response(
@@ -19,7 +20,8 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
-  const newCustomer = { id, name, address, email, phone };
+  const fullAddress = getFullAddress(address, unit);
+  const newCustomer = { id, name, address: fullAddress, email, phone };
 
   try {
     await db.insert(Customers).values(newCustomer);
