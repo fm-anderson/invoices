@@ -32,6 +32,7 @@ export default function Customer(): ReactElement {
         });
         const result = await response.json();
         console.log(result);
+        form.reset();
       } catch (error) {
         console.error("Failed to add customer", error);
       }
