@@ -1,9 +1,27 @@
 ---
+import { db, Customers } from "astro:db";
 import Layout from "../layouts/Layout.astro";
+
+const customers = await db.select().from(Customers);
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
     <h1>Hello World</h1>
+
+    {
+      customers.map((customer) => (
+        <div>
+          <ul>
+            <li class="mb-6">
+              <h1>{customer.name}</h1>
+              <p>{customer.address}</p>
+              <p>{customer.email}</p>
+              <p>{customer.phone}</p>
+            </li>
+          </ul>
+        </div>
+      ))
+    }
   </main>
 </Layout>
