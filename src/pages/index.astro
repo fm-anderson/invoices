@@ -1,27 +1,37 @@
 ---
 import { db, Customers } from "astro:db";
 import Layout from "../layouts/Layout.astro";
+import Customer from "../components/forms/Customer";
 
 const customers = await db.select().from(Customers);
 ---
 
 <Layout title="Welcome to Astro.">
-  <main>
-    <h1>Hello World</h1>
+  <main class="grid grid-cols-2">
+    <div id="customerFormContainer">
+      <Customer client:only="react" />
+      <div class="mt-6 text-center font-semibold">
+        <p>Total Customers: {customers.length}</p>
+      </div>
+    </div>
 
-    {
-      customers.map((customer) => (
-        <div>
-          <ul>
-            <li class="mb-6">
-              <h1>{customer.name}</h1>
-              <p>{customer.address}</p>
-              <p>{customer.email}</p>
-              <p>{customer.phone}</p>
-            </li>
-          </ul>
-        </div>
-      ))
-    }
+    <div>
+      {
+        customers.map((customer) => (
+          <div>
+            <ul>
+              <li class="mb-6">
+                <h1 class="font-bold">{customer.name}</h1>
+                <p>{customer.id}</p>
+                <p>{customer.address}</p>
+                <p>{customer.email}</p>
+                <p>{customer.phone}</p>
+                <p>{customer.createdAt}</p>
+              </li>
+            </ul>
+          </div>
+        ))
+      }
+    </div>
   </main>
 </Layout>
