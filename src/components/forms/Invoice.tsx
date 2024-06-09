@@ -51,8 +51,8 @@ export default function Invoice(): ReactElement {
       const formData = new FormData();
       Object.keys(invoiceData).forEach((key) => {
         if (key !== "invItems") {
-          formData.append(key, invoiceData[key as keyof InvoiceFormData]);
-          // formData.append(key, invoiceData[key as keyof typeof invoiceData]);
+          const value = invoiceData[key as keyof typeof invoiceData];
+          formData.append(key, value.toString());
         }
       });
       formData.append("invItems", JSON.stringify(invoiceData.invItems));
@@ -64,6 +64,7 @@ export default function Invoice(): ReactElement {
         });
         const result = await response.json();
         console.log(result);
+        setItems([initialItemState]);
         form.reset();
       } catch (error) {
         console.error("Failed to add invoice", error);
