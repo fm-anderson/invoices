@@ -1,6 +1,6 @@
 import { type ReactElement } from "react";
 import { useForm } from "@tanstack/react-form";
-import { itemSchema } from "./validationSchema";
+import { itemSchema } from "./validation/itemSchema";
 import FormField from "./FormField";
 
 interface ItemFormData {

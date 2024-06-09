@@ -27,11 +27,13 @@ const Items = defineTable({
 const Invoices = defineTable({
   columns: {
     id: column.text({ primaryKey: true }),
+    number: column.text(),
     url: column.text(),
     customer: column.text(),
     date: column.date(),
     dueDate: column.date(),
     total: column.number(),
+    invItems: column.json(),
     createdAt: column.date({ default: NOW }),
     updatedAt: column.date({ default: NOW }),
   },
@@ -43,24 +45,6 @@ const Invoices = defineTable({
   ],
 });
 
-const InvoiceItems = defineTable({
-  columns: {
-    invoiceId: column.text(),
-    itemId: column.text(),
-    quantity: column.number(),
-  },
-  foreignKeys: [
-    {
-      columns: ["invoiceId"],
-      references: () => [Invoices.columns.id],
-    },
-    {
-      columns: ["itemId"],
-      references: () => [Items.columns.id],
-    },
-  ],
-});
-
 export default defineDb({
-  tables: { Customers, Items, Invoices, InvoiceItems },
+  tables: { Customers, Items, Invoices },
 });

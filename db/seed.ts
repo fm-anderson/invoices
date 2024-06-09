@@ -27,39 +27,39 @@ export default async function () {
 
   await db.insert(Items).values([
     {
-      id: "1",
-      sku: "TV001",
+      id: "SEEDpjvi4sOgxeGP",
+      sku: "TVM001",
       name: "32 - 55 TV Mount Installation",
       desc: "",
       price: 99.0,
     },
     {
-      id: "2",
-      sku: "TV002",
+      id: "SEEDoAMWHphnMink",
+      sku: "TVM002",
       name: "56 - 75 TV Mount Installation",
       desc: "",
       price: 169.0,
     },
     {
-      id: "3",
-      sku: "TV003",
+      id: "SEEDrJNmkcYY49YZ",
+      sku: "TVM003",
       name: "76 - 85 TV Mount Installation",
       desc: "",
       price: 239.0,
     },
     {
-      id: "4",
-      sku: "CORD001",
+      id: "SEEDRUvtSnfeM6h5",
+      sku: "CORD01",
       name: "Cord Masking (Up to 4 ft)",
       desc: "",
       price: 49.0,
     },
-    {
-      id: "5",
-      sku: "CORD002",
-      name: "In-Wall Cord Concealment",
-      desc: "",
-      price: 149.0,
-    },
+    // {
+    //   id: "SEEDxXtTrBJo8rel",
+    //   sku: "CORD002",
+    //   name: "In-Wall Cord Concealment",
+    //   desc: "",
+    //   price: 149.0,
+    // },
   ]);
 }

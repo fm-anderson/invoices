@@ -5,7 +5,7 @@ const emailSchema = z
   .trim()
   .email({ message: "Invalid email address" });
 
-const customerNameSchema = z
+const nameSchema = z
   .string()
   .trim()
   .min(2, { message: "Name must contain at least 2 characters" })
@@ -38,45 +38,10 @@ const phoneSchema = z
     message: "Phone number must be no more than 18 characters: (555) 123-4567",
   });
 
-const itemNameSchema = z
-  .string()
-  .trim()
-  .min(2, { message: "Name must contain at least 2 characters" })
-  .max(50, { message: "Name must be 50 characters or fewer" });
-
-const priceSchema = z
-  .string()
-  .trim()
-  .regex(/^\d+(,\d{3})*(\.\d{1,2})?$/, {
-    message:
-      "Price must be a valid number format with up to two decimal places",
-  });
-
-const descSchema = z
-  .string()
-  .trim()
-  .min(10, { message: "Description must contain at least 10 characters" })
-  .max(200, { message: "Description must be 200 characters or fewer" });
-
-const skuSchema = z
-  .string()
-  .trim()
-  .regex(
-    /^[A-Z0-9]{6}$/,
-    "SKU must be 6 characters long, consisting of uppercase letters and numbers",
-  );
-
 export const customerSchema = {
-  name: customerNameSchema,
+  name: nameSchema,
   address: addressSchema,
   unit: unitSchema,
   email: emailSchema,
   phone: phoneSchema,
-};
-
-export const itemSchema = {
-  name: itemNameSchema,
-  desc: descSchema,
-  price: priceSchema,
-  sku: skuSchema,
 };
