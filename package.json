@@ -28,6 +28,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@iconify-json/tabler": "^1.1.113",
     "daisyui": "^4.12.2",
     "prettier": "^3.3.1",
     "prettier-plugin-astro": "^0.14.0",
