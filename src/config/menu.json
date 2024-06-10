@@ -1,0 +1,91 @@
+{
+  "navbar": [
+    {
+      "name": "Dashboard",
+      "url": "/",
+      "isDropdown": false
+    },
+    {
+      "name": "Clients",
+      "url": null,
+      "isDropdown": true,
+      "menu": [
+        {
+          "name": "Add Client",
+          "url": "/add-client"
+        },
+        {
+          "name": "View Clients",
+          "url": "/view-clients"
+        }
+      ]
+    },
+    {
+      "name": "Items",
+      "url": null,
+      "isDropdown": true,
+      "menu": [
+        {
+          "name": "Add Item",
+          "url": "/add-item"
+        },
+        {
+          "name": "View Items",
+          "url": "/view-items"
+        }
+      ]
+    },
+    {
+      "name": "Invoices",
+      "url": null,
+      "isDropdown": true,
+      "menu": [
+        {
+          "name": "Add Invoice",
+          "url": "/add-invoice"
+        },
+        {
+          "name": "View Invoices",
+          "url": "/view-invoices"
+        }
+      ]
+    }
+  ],
+  "sidebar": [
+    {
+      "name": "Dashboard",
+      "icon": "home-2",
+      "url": "/"
+    },
+    {
+      "name": "Add Client",
+      "icon": "users-plus",
+      "url": "/add-client"
+    },
+    {
+      "name": "View Clients",
+      "icon": "users",
+      "url": "/view-clients"
+    },
+    {
+      "name": "Add Item",
+      "icon": "category-plus",
+      "url": "/add-item"
+    },
+    {
+      "name": "View Items",
+      "icon": "category",
+      "url": "/view-items"
+    },
+    {
+      "name": "Add Invoice",
+      "icon": "file-invoice",
+      "url": "/add-invoice"
+    },
+    {
+      "name": "View invoices",
+      "icon": "file-plus",
+      "url": "/view-invoices"
+    }
+  ]
+}
