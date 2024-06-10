@@ -12,7 +12,7 @@ interface NavLink {
 const { navbar }: { navbar: NavLink[] } = menu;
 ---
 
-<div class="navbar justify-between bg-base-200">
+<div class="navbar justify-between bg-base-100">
   <div class="flex-none">
     <div class="flex lg:hidden">
       <label for="sidebar" class="btn btn-square btn-ghost"
@@ -25,7 +25,7 @@ const { navbar }: { navbar: NavLink[] } = menu;
       navbar.map((item) => {
         return item.isDropdown ? (
           <details class="dropdown shadow-none">
-            <summary class="btn my-1 gap-0 shadow-none">
+            <summary class="btn btn-ghost my-1 gap-0 shadow-none">
               <span class="font-medium">{item.name}</span>
               <Icon name="tabler:chevron-down" size={18} />
             </summary>
