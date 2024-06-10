@@ -1,7 +1,41 @@
 ---
+import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
+import { getEntryBySlug } from "astro:content";
+
+type QuickActionsAction = {
+  name: string;
+  icon: string;
+  url: string;
+};
+
+const home = await getEntryBySlug("home", "index");
+const { actions } = home.data;
 ---
 
 <Layout title="invoices">
-  <h1>invoices</h1>
+  <section class="w-full rounded-lg bg-accent bg-opacity-60 shadow-lg">
+    <div>
+      <div class="rounded p-2">
+        <h2 class="text-center font-semibold">Quick Actions</h2>
+      </div>
+      <div class="flex justify-evenly p-2">
+        {
+          actions.action.map((data: QuickActionsAction) => (
+            <>
+              <div>
+                <div>
+                  <a href={data.url} class="btn btn-sm">
+                    <Icon name={`tabler:${data.icon}`} size={20} />
+                    <span class="hidden md:flex">{data.name}</span>
+                  </a>
+                </div>
+              </div>
+              <div class="divider lg:divider-horizontal last:hidden" />
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 </Layout>

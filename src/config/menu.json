@@ -79,12 +79,12 @@
     },
     {
       "name": "Add Invoice",
-      "icon": "file-invoice",
+      "icon": "file-plus",
       "url": "/add-invoice"
     },
     {
       "name": "View invoices",
-      "icon": "file-plus",
+      "icon": "file-invoice",
       "url": "/view-invoices"
     }
   ]
