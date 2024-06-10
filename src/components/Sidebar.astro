@@ -1,0 +1,16 @@
+<div class="drawer lg:drawer-open">
+  <input id="sidebar" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content flex flex-col">
+    <slot />
+  </div>
+  <div class="drawer-side">
+    <label for="sidebar" aria-label="close sidebar" class="drawer-overlay"
+    ></label>
+    <ul class="menu min-h-full w-24 bg-base-200 text-base-content">
+      <li><a>ITEM 1</a></li>
+      <li><a>ITEM 2</a></li>
+      <li><a>ITEM 3</a></li>
+      <li><a>ITEM 4</a></li>
+    </ul>
+  </div>
+</div>

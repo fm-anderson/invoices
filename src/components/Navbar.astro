@@ -1,0 +1,29 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div class="navbar bg-base-200">
+  <div class="flex-none">
+    <button class="btn btn-square btn-ghost flex md:hidden">
+      <label for="sidebar"><Icon name="tabler:menu-2" size={24} /></label>
+    </button>
+  </div>
+  <div class="flex-1">
+    <details class="dropdown shadow-none">
+      <summary class="btn m-1 shadow-none">
+        <span class="font-medium">Clients</span>
+        <Icon name="tabler:chevron-down" size={18} />
+      </summary>
+      <ul
+        class="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
+      >
+        <li><a href="/add-client">Add Client</a></li>
+      </ul>
+    </details>
+  </div>
+  <div class="flex-none">
+    <button class="btn btn-square btn-ghost">
+      <Icon name="tabler:user-edit" size={24} />
+    </button>
+  </div>
+</div>
