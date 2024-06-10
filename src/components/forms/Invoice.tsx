@@ -2,8 +2,8 @@ import { type ReactElement, useState, useEffect } from "react";
 import type { TInvoiceForm, TItem } from "./types";
 import { useForm } from "@tanstack/react-form";
 import { invoiceSchema } from "./validation/invoiceSchema";
-import Input from "../Input";
-import SubmitButton from "../SubmitButton";
+import Input from "./elements/Input";
+import SubmitButton from "./elements/SubmitButton";
 
 const initialItemState: TItem = {
   id: "",

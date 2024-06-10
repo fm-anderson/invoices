@@ -2,8 +2,8 @@ import type { ReactElement } from "react";
 import type { TCustomerForm } from "./types";
 import { useForm } from "@tanstack/react-form";
 import { customerSchema } from "./validation/customerSchema";
-import Input from "../Input";
-import SubmitButton from "../SubmitButton";
+import Input from "./elements/Input";
+import SubmitButton from "./elements/SubmitButton";
 
 export default function Customer(): ReactElement {
   const form = useForm<TCustomerForm>({

@@ -2,8 +2,8 @@ import type { ReactElement } from "react";
 import type { TItemForm } from "./types";
 import { useForm } from "@tanstack/react-form";
 import { itemSchema } from "./validation/itemSchema";
-import Input from "../Input";
-import SubmitButton from "../SubmitButton";
+import Input from "./elements/Input";
+import SubmitButton from "./elements/SubmitButton";
 
 export default function Item(): ReactElement {
   const form = useForm<TItemForm>({
