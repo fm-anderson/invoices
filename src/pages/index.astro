@@ -3,11 +3,11 @@ import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
 import { getEntryBySlug } from "astro:content";
 
-type QuickActionsAction = {
+interface TAction {
   name: string;
   icon: string;
   url: string;
-};
+}
 
 const home = await getEntryBySlug("home", "index");
 const { actions } = home.data;
@@ -21,7 +21,7 @@ const { actions } = home.data;
       </div>
       <div class="flex justify-evenly p-2">
         {
-          actions.action.map((data: QuickActionsAction) => (
+          actions.action.map((data: TAction) => (
             <>
               <div>
                 <div>
