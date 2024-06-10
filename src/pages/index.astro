@@ -64,13 +64,13 @@ const invoices = await db.select().from(Invoices);
                 <p>{invoice.url}</p>
                 <p>{invoice.customer}</p>
 
-                <ul>
+                {/* <ul>
                   {invoice.invItems.map((item) => (
                     <li>
                       ${item.price} - {item.name}
                     </li>
                   ))}
-                </ul>
+                </ul> */}
                 <p>{invoice.date}</p>
                 <p>Due: {invoice.dueDate}</p>
                 <p>${invoice.total.toFixed(2)}</p>

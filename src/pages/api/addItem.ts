@@ -9,7 +9,7 @@ export const POST: APIRoute = async ({ request }) => {
   const { name, desc, price, sku } = trimmedData;
   const id = generateId(16) as string;
 
-  if (!name || !desc || !price || !sku) {
+  if (!name || !price || !sku) {
     return new Response(
       JSON.stringify({
         message: "Missing required fields",
@@ -24,7 +24,7 @@ export const POST: APIRoute = async ({ request }) => {
     await db.insert(Items).values(newItem);
     return new Response(
       JSON.stringify({
-        message: "Customer added successfully",
+        message: "Item added successfully",
       }),
       { status: 200 },
     );
@@ -32,7 +32,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (error instanceof Error) {
       return new Response(
         JSON.stringify({
-          message: `Failed to add customer: ${error.message}`,
+          message: `Failed to add item: ${error.message}`,
         }),
         { status: 500 },
       );

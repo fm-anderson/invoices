@@ -1,18 +1,12 @@
-import { type ReactElement } from "react";
+import type { ReactElement } from "react";
+import type { TCustomerForm } from "./types";
 import { useForm } from "@tanstack/react-form";
 import { customerSchema } from "./validation/customerSchema";
-import FormField from "./FormField";
-
-interface CustomerFormData {
-  name: string;
-  address: string;
-  unit: string;
-  email: string;
-  phone: string;
-}
+import Input from "../Input";
+import SubmitButton from "../SubmitButton";
 
 export default function Customer(): ReactElement {
-  const form = useForm<CustomerFormData>({
+  const form = useForm<TCustomerForm>({
     defaultValues: {
       name: "",
       address: "",
@@ -23,7 +17,7 @@ export default function Customer(): ReactElement {
     onSubmit: async ({ value }) => {
       const formData = new FormData();
       Object.keys(value).forEach((key) => {
-        formData.append(key, value[key as keyof CustomerFormData]);
+        formData.append(key, value[key as keyof TCustomerForm]);
       });
       try {
         const response = await fetch("/api/addCustomer", {
@@ -48,28 +42,28 @@ export default function Customer(): ReactElement {
           form.handleSubmit();
         }}
       >
-        <FormField
+        <Input
           form={form}
           name="name"
           schema={customerSchema.name}
           label="Name"
           placeholder="Bastinkie Thomson"
         />
-        <FormField
+        <Input
           form={form}
           name="address"
           schema={customerSchema.address}
           label="Address"
           placeholder="99 Main St, San Francisco, CA 94016"
         />
-        <FormField
+        <Input
           form={form}
           name="unit"
           schema={customerSchema.unit}
           label="Apt/Unit"
           placeholder="(Apt 2) or (Unit 2)"
         />
-        <FormField
+        <Input
           form={form}
           name="email"
           type="email"
@@ -77,24 +71,17 @@ export default function Customer(): ReactElement {
           label="Email"
           placeholder="name@email.com"
         />
-        <FormField
+        <Input
           form={form}
           name="phone"
           schema={customerSchema.phone}
           label="Phone"
           placeholder="555 123 4567"
         />
-        <form.Subscribe
-          selector={(state) => [state.canSubmit, state.isSubmitting]}
-          children={([canSubmit, isSubmitting]) => (
-            <button
-              type="submit"
-              disabled={!canSubmit}
-              className={`w-full bg-gray-200 py-2 ${isSubmitting ? "" : "hover:bg-gray-300"}`}
-            >
-              {isSubmitting ? "Creating..." : "Create Client"}
-            </button>
-          )}
+        <SubmitButton
+          form={form}
+          title="Create Client"
+          submittingTitle="Creating..."
         />
       </form>
     </div>

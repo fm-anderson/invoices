@@ -12,7 +12,7 @@ interface FormFieldProps<TFormData> {
   placeholder: string;
 }
 
-export default function FormField<TFormData>({
+export default function Input<TFormData>({
   form,
   name,
   schema,

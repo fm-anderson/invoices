@@ -1,25 +1,11 @@
 import { type ReactElement, useState, useEffect } from "react";
+import type { TInvoiceForm, TItem } from "./types";
 import { useForm } from "@tanstack/react-form";
-import FormField from "./FormField";
 import { invoiceSchema } from "./validation/invoiceSchema";
+import Input from "../Input";
+import SubmitButton from "../SubmitButton";
 
-interface Item {
-  id: string;
-  sku?: string;
-  name: string;
-  desc?: string;
-  price: number;
-  quantity: number;
-}
-
-interface InvoiceFormData {
-  customer: string;
-  date: string;
-  dueDate: string;
-  invItems: Array<Item>;
-}
-
-const initialItemState: Item = {
+const initialItemState: TItem = {
   id: "",
   sku: "",
   name: "",
@@ -29,11 +15,11 @@ const initialItemState: Item = {
 };
 
 export default function Invoice(): ReactElement {
-  const [availableItems, setAvailableItems] = useState<Array<Item>>([]);
-  const [items, setItems] = useState<Item[]>([initialItemState]);
+  const [availableItems, setAvailableItems] = useState<Array<TItem>>([]);
+  const [items, setItems] = useState<TItem[]>([initialItemState]);
   const [total, setTotal] = useState<number>(0);
 
-  const form = useForm<InvoiceFormData>({
+  const form = useForm<TInvoiceForm>({
     defaultValues: {
       customer: "",
       date: "",
@@ -102,7 +88,7 @@ export default function Invoice(): ReactElement {
 
   const handleItemChange = (
     index: number,
-    key: keyof Item,
+    key: keyof TItem,
     value: string | number,
   ) => {
     setItems((prevItems) =>
@@ -140,21 +126,21 @@ export default function Invoice(): ReactElement {
           form.handleSubmit();
         }}
       >
-        <FormField
+        <Input
           form={form}
           name="customer"
           schema={invoiceSchema.customer}
           label="Customer"
           placeholder="Customer ID"
         />
-        <FormField
+        <Input
           form={form}
           name="date"
           schema={invoiceSchema.date}
           label="Date"
           placeholder="Date"
         />
-        <FormField
+        <Input
           form={form}
           name="dueDate"
           schema={invoiceSchema.dueDate}
@@ -205,20 +191,10 @@ export default function Invoice(): ReactElement {
             Add item
           </button>
         </div>
-
-        <form.Subscribe
-          selector={(state) => [state.canSubmit, state.isSubmitting]}
-          children={([canSubmit, isSubmitting]) => (
-            <button
-              type="submit"
-              disabled={!canSubmit}
-              className={`w-full bg-gray-200 py-2 ${
-                isSubmitting ? "" : "hover:bg-gray-300"
-              }`}
-            >
-              {isSubmitting ? "Creating..." : "Create Invoice"}
-            </button>
-          )}
+        <SubmitButton
+          form={form}
+          title="Create Invoice"
+          submittingTitle="Creating..."
         />
       </form>
     </div>

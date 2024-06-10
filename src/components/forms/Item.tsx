@@ -1,17 +1,12 @@
-import { type ReactElement } from "react";
+import type { ReactElement } from "react";
+import type { TItemForm } from "./types";
 import { useForm } from "@tanstack/react-form";
 import { itemSchema } from "./validation/itemSchema";
-import FormField from "./FormField";
-
-interface ItemFormData {
-  name: string;
-  desc: string;
-  price: string;
-  sku: string;
-}
+import Input from "../Input";
+import SubmitButton from "../SubmitButton";
 
 export default function Item(): ReactElement {
-  const form = useForm<ItemFormData>({
+  const form = useForm<TItemForm>({
     defaultValues: {
       name: "",
       desc: "",
@@ -22,7 +17,7 @@ export default function Item(): ReactElement {
       console.log(value);
       const formData = new FormData();
       Object.keys(value).forEach((key) => {
-        formData.append(key, value[key as keyof ItemFormData]);
+        formData.append(key, value[key as keyof TItemForm]);
       });
       try {
         const response = await fetch("/api/addItem", {
@@ -47,45 +42,38 @@ export default function Item(): ReactElement {
           form.handleSubmit();
         }}
       >
-        <FormField
+        <Input
           form={form}
           name="name"
           schema={itemSchema.name}
           label="Name"
           placeholder="32 - 55 TV Mount Installation"
         />
-        <FormField
+        <Input
           form={form}
           name="desc"
           schema={itemSchema.desc}
           label="Description"
           placeholder="Item description"
         />
-        <FormField
+        <Input
           form={form}
           name="price"
           schema={itemSchema.price}
           label="Price"
           placeholder="$119.00"
         />
-        <FormField
+        <Input
           form={form}
           name="sku"
           schema={itemSchema.sku}
           label="Stock Keeping Unit"
           placeholder="SKU034"
         />
-        <form.Subscribe
-          selector={(state) => [state.canSubmit, state.isSubmitting]}
-          children={([canSubmit, isSubmitting]) => (
-            <button
-              type="submit"
-              disabled={!canSubmit}
-              className={`w-full bg-gray-200 py-2 ${isSubmitting ? "" : "hover:bg-gray-300"}`}
-            >
-              {isSubmitting ? "Creating..." : "Create Item"}
-            </button>
-          )}
+        <SubmitButton
+          form={form}
+          title="Create Item"
+          submittingTitle="Creating..."
         />
       </form>
     </div>
