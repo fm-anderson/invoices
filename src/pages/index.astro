@@ -10,7 +10,7 @@ const items = await db.select().from(Items);
 const invoices = await db.select().from(Invoices);
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="invoices">
   <main class="grid grid-cols-2">
     <div class="flex flex-col gap-3">
       <div class="p-5">
@@ -63,14 +63,6 @@ const invoices = await db.select().from(Invoices);
                 </h1>
                 <p>{invoice.url}</p>
                 <p>{invoice.customer}</p>
-
-                {/* <ul>
-                  {invoice.invItems.map((item) => (
-                    <li>
-                      ${item.price} - {item.name}
-                    </li>
-                  ))}
-                </ul> */}
                 <p>{invoice.date}</p>
                 <p>Due: {invoice.dueDate}</p>
                 <p>${invoice.total.toFixed(2)}</p>
