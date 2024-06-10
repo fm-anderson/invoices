@@ -14,6 +14,7 @@ const { actions } = home.data;
 ---
 
 <Layout title="invoices">
+  <!-- quick actions section -->
   <section class="w-full rounded-lg bg-neutral bg-opacity-40 shadow-lg">
     <div>
       <div class="rounded p-2">
@@ -35,6 +36,70 @@ const { actions } = home.data;
             </>
           ))
         }
+      </div>
+    </div>
+  </section>
+
+  <!-- overview section  -->
+  <section>
+    <div class="grid grid-cols-1 gap-0 md:grid-cols-2 md:gap-4">
+      <!-- estimate -->
+      <div class="overflow-x-auto">
+        <div
+          class="mt-4 flex items-center gap-1 rounded-t-lg bg-neutral p-2 text-neutral-content"
+        >
+          <Icon name="tabler:device-desktop-analytics" size={24} />
+          <p class="font-medium">Estimate Overview</p>
+        </div>
+        <table class="table rounded-lg border-2">
+          <tbody>
+            <tr>
+              <th>Draft</th>
+              <td class="flex justify-end">$450</td>
+            </tr>
+            <tr>
+              <th>Approved</th>
+              <td class="flex justify-end">$450</td>
+            </tr>
+            <tr>
+              <th>Rejected</th>
+              <td class="flex justify-end">$450</td>
+            </tr>
+            <tr>
+              <th>Canceled</th>
+              <td class="flex justify-end">$450</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- invoice -->
+      <div class="overflow-x-auto">
+        <div
+          class="mt-4 flex items-center gap-1 rounded-t-lg bg-neutral p-2 text-neutral-content"
+        >
+          <Icon name="tabler:device-desktop-analytics" size={24} />
+          <p class="font-medium">Invoice Overview</p>
+        </div>
+        <table class="table rounded-lg border-2">
+          <tbody>
+            <tr>
+              <th>Sent</th>
+              <td class="flex justify-end">$450</td>
+            </tr>
+            <tr>
+              <th>Viewed</th>
+              <td class="flex justify-end">$450</td>
+            </tr>
+            <tr>
+              <th>Paid</th>
+              <td class="flex justify-end">$450</td>
+            </tr>
+            <tr>
+              <th>Overdue</th>
+              <td class="flex justify-end">$450</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
