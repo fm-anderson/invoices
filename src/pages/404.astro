@@ -1,0 +1,38 @@
+---
+import { Icon } from "astro-icon/components";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Error: Not Found">
+  <section class="w-full">
+    <div class="flex h-[80vh] flex-col items-center justify-center gap-6">
+      <div class="text-center font-semibold">
+        <h1 class="mb-4 text-5xl">Error 404</h1>
+        <span class="flex items-center gap-1">
+          <h2 class="text-2xl">Page Not Found</h2>
+          <Icon name="tabler:mood-puzzled" size={24} />
+        </span>
+      </div>
+      <div>
+        <ul class="flex gap-2">
+          {
+            Astro.request.headers.get("Referer") && (
+              <li>
+                <a href={Astro.request.headers.get("Referer")} class="btn w-36">
+                  <Icon name="tabler:corner-down-left-double" size={24} />
+                  Go Back
+                </a>
+              </li>
+            )
+          }
+          <li>
+            <a href="/" class="btn w-36">
+              <Icon name="tabler:home-2" size={24} />
+              Dashboard
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>
