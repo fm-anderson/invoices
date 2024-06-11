@@ -15,27 +15,30 @@ const { actions } = home.data;
 
 <Layout title="invoices">
   <!-- quick actions section -->
-  <section class="w-full rounded-lg bg-neutral bg-opacity-40 shadow-lg">
-    <div>
-      <div class="rounded p-2">
-        <h2 class="text-center font-medium text-neutral">Quick Actions</h2>
-      </div>
-      <div class="flex justify-evenly p-2">
-        {
-          actions.action.map((data: TAction) => (
-            <>
-              <div>
+  <section class="grid grid-cols-3">
+    <div class="col-span-3 lg:col-span-2">
+      <div>
+        <div class="rounded-t-lg bg-neutral p-2">
+          <div class="flex items-center gap-1 text-center text-neutral-content">
+            <span>Quick Actions</span>
+            <Icon name="tabler:arrow-big-right-lines" size={20} />
+          </div>
+        </div>
+        <div class="flex justify-evenly border-2 p-2">
+          {
+            actions.action.map((data: TAction) => (
+              <>
                 <div>
                   <a href={data.url} class="btn btn-sm">
                     <Icon name={`tabler:${data.icon}`} size={20} />
                     <span class="hidden md:flex">{data.name}</span>
                   </a>
                 </div>
-              </div>
-              <div class="divider divider-neutral divider-horizontal last:hidden" />
-            </>
-          ))
-        }
+                <div class="divider divider-horizontal last:hidden" />
+              </>
+            ))
+          }
+        </div>
       </div>
     </div>
   </section>

@@ -27,6 +27,7 @@ export default function Customer(): ReactElement {
         const result = await response.json();
         console.log(result);
         form.reset();
+        window.location.href = "/clients/view";
       } catch (error) {
         console.error("Failed to add customer", error);
       }

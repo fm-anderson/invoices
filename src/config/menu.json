@@ -42,11 +42,11 @@
       "menu": [
         {
           "name": "Add Client",
-          "url": "/add-client"
+          "url": "/clients/add"
         },
         {
           "name": "View Clients",
-          "url": "/view-clients"
+          "url": "/clients/view"
         }
       ]
     },
@@ -85,7 +85,7 @@
     {
       "name": "Add Client",
       "icon": "users-plus",
-      "url": "/add-client"
+      "url": "/clients/add"
     },
     {
       "name": "Add Item",

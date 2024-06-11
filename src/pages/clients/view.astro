@@ -1,0 +1,46 @@
+---
+import { Icon } from "astro-icon/components";
+import { db, Customers } from "astro:db";
+import Layout from "../../layouts/Layout.astro";
+
+const customers = await db.select().from(Customers);
+---
+
+<Layout title="View all clients">
+  <section class="m-4">
+    <div class="overflow-x-auto">
+      <table class="table border-2">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            customers.map((customer, index) => (
+              <tr class="hover">
+                <th>{index + 1}</th>
+                <td>{customer.name}</td>
+                <td>{customer.address}</td>
+                <td>{customer.phone}</td>
+                <td>{customer.email}</td>
+                <td class="flex gap-2">
+                  <button class="btn btn-square btn-sm">
+                    <Icon name="tabler:edit" size={20} />
+                  </button>
+                  <button class="btn btn-square btn-sm hover:btn-accent">
+                    <Icon name="tabler:trash" size={20} />
+                  </button>
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Layout>

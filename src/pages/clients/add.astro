@@ -1,0 +1,10 @@
+---
+import Customer from "../../components/forms/Customer";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Add new client">
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <Customer client:only="react" />
+  </div>
+</Layout>
